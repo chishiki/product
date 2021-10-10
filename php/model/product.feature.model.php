@@ -102,7 +102,7 @@ final class ProductFeature extends ORM {
 		$this->updated = $dt->format('Y-m-d H:i:s');
 		$this->deleted = 1;
 		$conditions = array('productFeatureID' => $this->productFeatureID);
-		self::update($this, $conditions, true, false, 'hardware_');
+		self::update($this, $conditions, true, false, 'product_');
 
 	}
 

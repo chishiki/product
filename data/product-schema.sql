@@ -20,6 +20,7 @@ CREATE TABLE `product_Product` (
 	`productNotes` text NOT NULL,
     `productPublished` int(1) NOT NULL,
     `productURL` varchar(100) NOT NULL,
+    `productFeatured` int(1) NOT NULL,
     PRIMARY KEY (`productID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

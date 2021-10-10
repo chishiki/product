@@ -54,7 +54,7 @@ final class Product extends ORM {
 		$this->productDescriptionEnglish = '';
 		$this->productNameJapanese = '';
 		$this->productDescriptionJapanese = '';
-		$this->productPublished = 0;
+		$this->productPublished = 1;
 		$this->productFeatured = 0;
 		$this->productURL = '';
 
