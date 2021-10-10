@@ -20,6 +20,16 @@ final class ProductMainViewController implements ViewControllerInterface {
 	
 	public function getView() {
 
+		if ($this->loc[0] == 'product' && !empty($this->loc[1])) {
+
+			$productID = ProductUtilities::getProductWithURL($this->loc[1]);
+			if (!is_null($productID)) {
+				$view = new ProductView();
+				return $view->productView($productID);
+			}
+
+		}
+
 	}
 
 }
