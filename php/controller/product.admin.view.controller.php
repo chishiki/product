@@ -102,6 +102,20 @@ final class ProductAdminViewController implements ViewControllerInterface {
 
 			if ($loc[2] == 'category') {
 
+				$view = new ProductCategoryView();
+
+				// /product/admin/category/create/
+				if ($loc[3] == 'create') { return $view->adminProductCategoryForm('create'); }
+	
+				// /product/admin/category/update/<productCategoryID>/
+				if ($loc[3] == 'update' && is_numeric($loc[4])) { return $view->adminProductCategoryForm('update',$loc[4]); }
+	
+				// /product/admin/category/confirm-delete/<productCategoryID>/
+				if ($loc[3] == 'confirm-delete' && is_numeric($loc[4])) { return $view->adminProductCategoryConfirmDelete($loc[4]); }
+	
+				// /product/admin/category/
+				return $view->adminProductCategoryList();
+				
 			}
 
 		}

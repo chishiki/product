@@ -173,6 +173,66 @@ final class ProductAdminController implements StateControllerInterface {
 
 			if ($loc[2] == 'category') {
 
+				// /product/admin/category/create/
+				if ($loc[3] == 'create' && isset($input['product-category-create'])) {
+
+					// $this->errors (add validation here: ok to create?)
+					// $this->errors[] = array('product-category-create' => Lang::getLang('thereWasAProblemCreatingYourHardwareProductCategory'));
+
+					if (empty($this->errors)) {
+
+						$category = new ProductCategory();
+						foreach ($input AS $property => $value) { if (isset($category->$property)) { $category->$property = $value; } }
+						ProductCategory::insert($category, false, 'product_');
+						$successURL = '/' . Lang::prefix() . 'product/admin/category/';
+						header("Location: $successURL");
+
+					}
+
+				}
+
+				// /product/admin/category/update/<productID>/
+				if ($loc[3] == 'update' && is_numeric($loc[4]) && isset($input['product-category-update'])) {
+
+					$productCategoryID = $loc[4];
+
+					// $this->errors (add validation here: ok to update?)
+					// $this->errors[] = array('product-category-update' => Lang::getLang('thereWasAProblemUpdatingYourHardwareProductCategory'));
+
+					if (empty($this->errors)) {
+
+						$category = new ProductCategory($productCategoryID);
+						$category->updated = date('Y-m-d H:i:s');
+						foreach ($input AS $property => $value) { if (isset($category->$property)) { $category->$property = $value; } }
+						$conditions = array('productCategoryID' => $productCategoryID);
+						ProductCategory::update($category, $conditions, true, false, 'product_');
+						$this->messages[] = Lang::getLang('productCategoryUpdateSuccessful');
+
+					}
+
+				}
+
+				// /product/admin/category/delete/<categoryID>/
+				if ($loc[3] == 'delete' && is_numeric($loc[4]) && isset($input['product-category-confirm-delete'])) {
+
+					$productCategoryID = $loc[4];
+
+					if ($input['productCategoryID'] != $productCategoryID) {
+						$this->errors[] = array('product-category-delete' => Lang::getLang('thereWasAProblemDeletingYourHardwareProductCategory'));
+					}
+
+					if (empty($this->errors)) {
+
+						$category = new ProductCategory($productCategoryID);
+						$category->markAsDeleted();
+						$successURL = '/' . Lang::prefix() . 'product/admin/category/';
+						header("Location: $successURL");
+
+					}
+
+				}
+
+
 			}
 
 		}
