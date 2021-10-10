@@ -65,6 +65,8 @@ final class ProductView {
 
 	public function adminProductForm($type, $productID = null) {
 
+		$site = new Site($_SESSION['siteID']);
+
 		$product = new Product($productID);
 		$pcv = new ProductCategoryView();
 		if (!empty($this->input)) {
@@ -134,6 +136,23 @@ final class ProductView {
 				
 					</div>
 				
+				</div>
+				
+				<hr />
+				
+				<div class="form-row">
+				
+					<div class="form-group col-12 col-xl-8">
+						<label for="productURL">' . Lang::getLang('productURL') . ' (' . Lang::getLang('alphanumericHyphenOnly') . ')</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<div class="input-group-text"><span class="d-none d-md-inline">https://' . $site->siteURL . '</span>/' . Lang::prefix() . 'product/</div>
+							</div>
+							<input type="text" class="form-control" name="productURL" value="' . $product->productURL . '" required>
+							<div class="input-group-append"><div class="input-group-text">/</div></div>
+						</div>
+					</div>
+
 				</div>
 				
 				<hr />
