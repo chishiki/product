@@ -73,6 +73,7 @@ REPLACE INTO `perihelion_Lang` VALUES ('product','Product',0,'プロダクト',0
 ('productCategoryID','ID',0,'ID',0,@now),
 ('productCategoryName','Category',0,'カテゴリー名',0,@now),
 ('productCategoryConfirmDelete','Confirm Category Delete',0,'カテゴリー削除確認',0,@now),
-('productURL','URL',0,'URL',0,@now);
+('productURL','URL',0,'URL',0,@now),
+('productDownloads','Downloads',0,'ダウンロード',0,@now);
 
 -- ('xxxxxxx','xxxxxxx',0,'xxxxxxx',0,@now),
