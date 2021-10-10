@@ -326,9 +326,9 @@ final class ProductView {
 
 				<div class="row">
 					
-					<div class="col-12 col-sm-6 mb-3">' . $this->productCarousel($productID) . '</div>
+					<div class="col-12 col-md-6 mb-3">' . $this->productCarousel($productID) . '</div>
 					
-					<div class="col-12 col-sm-6 mb-3">
+					<div class="col-12 col-md-6 mb-3">
 						<h1 class="product-h">' . $product->productName() . '</h1>
 						<p>' . nl2br(htmlentities($product->productDescription()),true) . '</p>
 					</div>
@@ -513,7 +513,7 @@ final class ProductView {
 		for ($i = 0; $i < count($images); $i++) {
 			$panels .= '
 				<div class="carousel-item' . ($i==0?' active':'') . '">
-					<img src="/image/' . $images[$i] . '" class="d-block w-100"">
+					<img src="/image/' . $images[$i] . '/600/">
 				</div>
 			';
 		}
