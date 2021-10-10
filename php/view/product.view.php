@@ -38,6 +38,7 @@ final class ProductView {
 						<thead class="thead-light">
 							<tr>
 								<th scope="col" class="text-center">' . Lang::getLang('productName') . '</th>
+								<th scope="col" class="text-center">' . Lang::getLang('category') . '</th>
 								<th scope="col" class="text-center">' . Lang::getLang('productPublished') . '</th>
 								<th scope="col" class="text-center">' . Lang::getLang('productFeatured') . '</th>
 								<th scope="col" class="text-center">' . Lang::getLang('action') . '</th>
@@ -267,7 +268,7 @@ final class ProductView {
 
 			$product = new Product($productID);
 			$productList .= '
-				<div class="product-list-item row clickable" data-url="/' . Lang::prefix() . 'hardware/products/' . $product->productURL . '/">
+				<div class="product-list-item row clickable" data-url="/' . Lang::prefix() . 'product/' . $product->productURL . '/">
 					<div class="product-list-item-image col-12 col-md-3 col-lg-2">' . $img . '</div>
 					<div class="product-list-item-product col-12 col-md-9 col-lg-10">
 						<span class="product-list-item-product-name">' . $product->productName() . '</span>
@@ -408,10 +409,12 @@ final class ProductView {
 		foreach ($products AS $productID) {
 
 			$product = new Product($productID);
+			$category = new ProductCategory($product->productCategoryID);
 
 			$rows .= '
 				<tr id="product_id_' . $productID . '" class="product-list-row">
-					<th scope="row" class="text-left">' . $product->productName() . '</th>
+					<th scope="row" class="text-center">' . $product->productName() . '</th>
+					<td class="text-center">' . $category->productCategoryName() . '</td>
 					<td class="text-center">' . ($product->productPublished?'&#10004;':'') . '</td>
 					<td class="text-center">' . ($product->productFeatured?'&#10004;':'') . '</td>
 					<td class="text-center text-nowrap">

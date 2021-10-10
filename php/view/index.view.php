@@ -21,7 +21,7 @@ final class ProductIndexView {
 		$arg = new ProductListParameters();
 		$arg->productFeatured = true;
 		$arg->descriptionConcat = 77; // if English do we make this longer...?
-		$arg->title = array('langKey' => 'featuredProducts', 'langSelector' => 'en');
+		$arg->title = array('langKey' => 'featuredProducts', 'langSelector' => $_SESSION['lang']);
 		$h .= $hpv->productList($arg);
 
 		return $h;
