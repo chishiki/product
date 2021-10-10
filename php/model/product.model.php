@@ -204,7 +204,7 @@ final class ProductListParameters {
 
 		$this->productID = null;
 		$this->productCategoryID = null;
-		$this->productPublished = true; // [null => either; true => published only; false => not published only]
+		$this->productPublished = null; // [null => either; true => published only; false => not published only]
 		$this->productFeatured = null; // [null => either; true => featured only; false => not featured only]
 		$this->productURL = null;
 

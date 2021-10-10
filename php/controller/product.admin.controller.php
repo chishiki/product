@@ -46,6 +46,10 @@ final class ProductAdminController implements StateControllerInterface {
 								$product->$property = $value;
 							}
 						}
+
+						if (isset($input['productPublished'])) { $product->productPublished = 1; } else { $product->productPublished = 0; }
+						if (isset($input['productFeatured'])) { $product->productFeatured = 1; } else { $product->productFeatured = 0; }
+
 						Product::insert($product, false, 'product_');
 						$successURL = '/' . Lang::prefix() . 'product/admin/product/';
 						header("Location: $successURL");
@@ -70,6 +74,10 @@ final class ProductAdminController implements StateControllerInterface {
 								$product->$property = $value;
 							}
 						}
+
+						if (isset($input['productPublished'])) { $product->productPublished = 1; } else { $product->productPublished = 0; }
+						if (isset($input['productFeatured'])) { $product->productFeatured = 1; } else { $product->productFeatured = 0; }
+
 						$conditions = array('productID' => $productID);
 						Product::update($product, $conditions, true, false, 'product_');
 						$this->messages[] = Lang::getLang('productUpdateSuccessful');

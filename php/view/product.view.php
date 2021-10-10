@@ -156,6 +156,18 @@ final class ProductView {
 				</div>
 				
 				<hr />
+				
+				<div class="form-group form-check">
+					<input type="checkbox" class="form-check-input" name="productPublished" value="1"' . ($product->productPublished?' checked':'') . '>
+					<label class="form-check-label" for="productPublished">' . Lang::getLang('productPublished') . '</label>
+				</div>
+				
+				<div class="form-group form-check">
+					<input type="checkbox" class="form-check-input" name="productFeatured" value="1"' . ($product->productFeatured?' checked':'') . '>
+					<label class="form-check-label" for="productFeatured">' . Lang::getLang('productFeatured') . '</label>
+				</div>
+				
+				<hr />
 
 				<div class="form-row">
 				
@@ -397,11 +409,15 @@ final class ProductView {
 		$view = '<div id="product_downloads" class="container-fluid">';
 			$view .= '<div id="product_downloads_container" class="row">';
 				foreach ($downloads AS $fileID) {
+
 					$file = new File($fileID);
+					$fileTitle = $file->title();
+					if (empty($fileTitle)) { $fileTitle = Lang::getLang('download'); }
+
 					$view .= '
 						<div class="col-12 col-md-6 col-lg-3 my-3">
 							<div class="card">
-								<div class="card-header">' . $file->fileTitleEnglish . '</div>
+								<div class="card-header">' . $fileTitle . '</div>
 								<div class="card-body">
 									<a class="btn btn-primary btn-block" href="/file/' . $fileID . '/" download>
 										' . Lang::getLang('download') . '<br />
