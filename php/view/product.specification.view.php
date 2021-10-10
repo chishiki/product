@@ -48,7 +48,7 @@ final class ProductSpecificationView {
 
 		$form .= '
 
-			<form id="hardware_product_specification_manager_form" method="post" action="/' . Lang::prefix() . 'hardware/admin/products/update/' . $productID . '/specifications/">
+			<form id="product_specification_manager_form" method="post" action="/' . Lang::prefix() . 'product/admin/product/update/' . $productID . '/specifications/">
 
 				<div class="form-row">
 				
@@ -94,8 +94,8 @@ final class ProductSpecificationView {
 
 		';
 
-		$header = Lang::getLang('hardwareProductSpecificationManager') . ' ['.$product->productName().']';
-		$card = new CardView('hardware_product_specification_manager',array('container'),'',array('col-12'),$header,$form);
+		$header = Lang::getLang('productSpecificationManager') . ' ['.$product->productName().']';
+		$card = new CardView('product_specification_manager',array('container'),'',array('col-12'),$header,$form);
 		return $card->card();
 
 	}

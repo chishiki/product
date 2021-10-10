@@ -24,10 +24,10 @@ final class ProductView {
 
 			<div class="row mb-3">
 				<div class="col-12 col-md-8 col-lg-6">
-					' . PaginationView::paginate($arg->numberOfPages,$arg->currentPage,'/' . Lang::prefix() . 'hardware/admin/products/') . '
+					' . PaginationView::paginate($arg->numberOfPages,$arg->currentPage,'/' . Lang::prefix() . 'product/admin/product/') . '
 				</div>
 				<div class="col-12 col-md-4 col-lg-2 offset-lg-4">
-					<a href="/' . Lang::prefix() . 'hardware/admin/products/create/" class="btn btn-block btn-outline-success btn-sm"><span class="fas fa-plus"></span> ' . Lang::getLang('create') . '</a>
+					<a href="/' . Lang::prefix() . 'product/admin/product/create/" class="btn btn-block btn-outline-success btn-sm"><span class="fas fa-plus"></span> ' . Lang::getLang('create') . '</a>
 				</div>
 			</div>
 
@@ -37,9 +37,9 @@ final class ProductView {
 					<table class="table table-bordered table-striped table-hover table-sm">
 						<thead class="thead-light">
 							<tr>
-								<th scope="col" class="text-center">' . Lang::getLang('hardwareProductName') . '</th>
-								<th scope="col" class="text-center">' . Lang::getLang('hardwareProductPublished') . '</th>
-								<th scope="col" class="text-center">' . Lang::getLang('hardwareProductFeatured') . '</th>
+								<th scope="col" class="text-center">' . Lang::getLang('productName') . '</th>
+								<th scope="col" class="text-center">' . Lang::getLang('productPublished') . '</th>
+								<th scope="col" class="text-center">' . Lang::getLang('productFeatured') . '</th>
 								<th scope="col" class="text-center">' . Lang::getLang('action') . '</th>
 							</tr>
 						</thead>
@@ -50,14 +50,14 @@ final class ProductView {
 			
 			<div class="row">
 				<div class="col-12 col-md-8 col-lg-6">
-					' . PaginationView::paginate($arg->numberOfPages,$arg->currentPage,'/' . Lang::prefix() . 'hardware/admin/products/') . '
+					' . PaginationView::paginate($arg->numberOfPages,$arg->currentPage,'/' . Lang::prefix() . 'product/admin/product/') . '
 				</div>
 			</div>
 			
 
 		';
 
-		$card = new CardView('hardware_product_list',array('container'),'',array('col-12'),Lang::getLang('hardwareProductList'),$body);
+		$card = new CardView('admin_product_list',array('container'),'',array('col-12'),Lang::getLang('productList'),$body);
 		return $card->card();
 
 	}
@@ -72,7 +72,7 @@ final class ProductView {
 
 		$form = $this->adminProductFormTabs($type, $productID) . '
 
-			<form id="productForm' . ucfirst($type) . '" method="post" action="/' . Lang::prefix() . 'hardware/admin/products/' . $type . '/' . ($productID?$productID.'/':'') . '">
+			<form id="productForm' . ucfirst($type) . '" method="post" action="/' . Lang::prefix() . 'product/admin/product/' . $type . '/' . ($productID?$productID.'/':'') . '">
 				
 				' . ($productID?'<input type="hidden" name="productID" value="' . $productID . '">':'') . '
 				
@@ -104,7 +104,7 @@ final class ProductView {
 						
 							<div class="form-group col-12">
 								<label for="productDescriptionEnglish">' . Lang::getLang('productDescriptionEnglish') . '</label>
-								<textarea id="hardware_admin_product_form_description_english" class="form-control" name="productDescriptionEnglish">' . $product->productDescriptionEnglish . '</textarea>
+								<textarea id="admin_product_form_description_english" class="form-control" name="productDescriptionEnglish">' . $product->productDescriptionEnglish . '</textarea>
 							</div>
 		
 						</div>
@@ -126,7 +126,7 @@ final class ProductView {
 						
 							<div class="form-group col-12">
 								<label for="productDescriptionJapanese">' . Lang::getLang('productDescriptionJapanese') . '</label>
-								<textarea id="hardware_admin_product_form_description_japanese" class="form-control" name="productDescriptionJapanese">' . $product->productDescriptionJapanese . '</textarea>
+								<textarea id="admin_product_form_description_japanese" class="form-control" name="productDescriptionJapanese">' . $product->productDescriptionJapanese . '</textarea>
 							</div>
 		
 						</div>
@@ -140,7 +140,7 @@ final class ProductView {
 				<div class="form-row">
 				
 					<div class="form-group col-12 col-sm-4 col-md-3">
-						<a href="/' . Lang::prefix() . 'hardware/admin/products/" class="btn btn-block btn-outline-secondary" role="button">' . Lang::getLang('returnToList') . '</a>
+						<a href="/' . Lang::prefix() . 'product/admin/product/" class="btn btn-block btn-outline-secondary" role="button">' . Lang::getLang('returnToList') . '</a>
 					</div>
 					
 					<div class="form-group col-12 col-sm-4 col-md-3 offset-md-3">
@@ -148,7 +148,7 @@ final class ProductView {
 					</div>
 					
 					<div class="form-group col-12 col-sm-4 col-md-3">
-						<a href="/' . Lang::prefix() . 'hardware/admin/products/" class="btn btn-block btn-outline-secondary" role="button">' . Lang::getLang('cancel') . '</a>
+						<a href="/' . Lang::prefix() . 'product/admin/product/" class="btn btn-block btn-outline-secondary" role="button">' . Lang::getLang('cancel') . '</a>
 					</div>
 					
 				</div>
@@ -157,8 +157,8 @@ final class ProductView {
 
 		';
 
-		$header = Lang::getLang('hardwareProduct'.ucfirst($type)).($type=='update'?' ['.$product->productName().']':'');
-		$card = new CardView('hardware_product_confirm_'.ucfirst($type),array('container'),'',array('col-12'),$header,$form);
+		$header = Lang::getLang('product'.ucfirst($type)).($type=='update'?' ['.$product->productName().']':'');
+		$card = new CardView('admin_product_form_'.ucfirst($type),array('container'),'',array('col-12'),$header,$form);
 		return $card->card();
 
 	}
@@ -170,7 +170,7 @@ final class ProductView {
 
 		$form = '
 
-			<form id="product_form_delete" method="post" action="/' . Lang::prefix() . 'hardware/admin/products/delete/' . $productID . '/">
+			<form id="product_form_delete" method="post" action="/' . Lang::prefix() . 'product/admin/product/delete/' . $productID . '/">
 				
 				<input type="hidden" name="productID" value="' . $productID . '">
 
@@ -232,7 +232,7 @@ final class ProductView {
 					</div>
 					
 					<div class="form-group col-6 col-md-3">
-						<a href="/' . Lang::prefix() . 'hardware/admin/products/" class="btn btn-block btn-outline-secondary" role="button">' . Lang::getLang('cancel') . '</a>
+						<a href="/' . Lang::prefix() . 'product/admin/product/" class="btn btn-block btn-outline-secondary" role="button">' . Lang::getLang('cancel') . '</a>
 					</div>
 					
 				</div>
@@ -241,7 +241,7 @@ final class ProductView {
 		';
 
 		$header = Lang::getLang('productConfirmDelete').' ['. $product->productName .']';
-		$card = new CardView('hardware_product_confirm_delete',array('container'),'',array('col-12'),$header,$form);
+		$card = new CardView('admin_product_confirm_delete',array('container'),'',array('col-12'),$header,$form);
 		return $card->card();
 
 	}
@@ -253,7 +253,7 @@ final class ProductView {
 
 		$productList = '<div class="container mt-3">';
 
-		$productList .= '<h3 class="hardware-h">' .  Lang::getLang($arg->title['langKey'], $arg->title['langSelector']) . '</h3>';
+		$productList .= '<h3 class="product-h">' .  Lang::getLang($arg->title['langKey'], $arg->title['langSelector']) . '</h3>';
 
 		foreach ($products AS $productID) {
 
@@ -297,20 +297,20 @@ final class ProductView {
 					<div class="col-12 col-sm-6 mb-3">' . $this->productCarousel($productID) . '</div>
 					
 					<div class="col-12 col-sm-6 mb-3">
-						<h1 class="hardware-h">' . $product->productName() . '</h1>
+						<h1 class="product-h">' . $product->productName() . '</h1>
 						<p>' . nl2br(htmlentities($product->productDescription()),true) . '</p>
 					</div>
 
 					<div class="col-12 mb-3">
 						<ul class="nav nav-tabs" id="myTab" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active" id="product_view_features_nav" data-toggle="tab" href="#product_view_features_panel" role="tab" aria-controls="home" aria-selected="true">' . Lang::getLang('hardwareProductFeatures') . '</a>
+								<a class="nav-link active" id="product_view_features_nav" data-toggle="tab" href="#product_view_features_panel" role="tab" aria-controls="home" aria-selected="true">' . Lang::getLang('productFeatures') . '</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="product_view_specifications_nav" data-toggle="tab" href="#product_view_specifications_panel" role="tab" aria-controls="profile" aria-selected="false">' . Lang::getLang('hardwareProductSpecifications') . '</a>
+								<a class="nav-link" id="product_view_specifications_nav" data-toggle="tab" href="#product_view_specifications_panel" role="tab" aria-controls="profile" aria-selected="false">' . Lang::getLang('productSpecifications') . '</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="product_view_downloads_nav" data-toggle="tab" href="#product_view_downloads_panel" role="tab" aria-controls="contact" aria-selected="false">' . Lang::getLang('hardwareProductDownloads') . '</a>
+								<a class="nav-link" id="product_view_downloads_nav" data-toggle="tab" href="#product_view_downloads_panel" role="tab" aria-controls="contact" aria-selected="false">' . Lang::getLang('productDownloads') . '</a>
 							</li>
 						</ul>
 						<div class="tab-content" id="myTabContent">
@@ -335,7 +335,7 @@ final class ProductView {
 		$featureList = new ProductFeatureList($productID);
 		$features = $featureList->features();
 
-		$view = '<div id="hardware_product_features" class="container-fluid">';
+		$view = '<div id="product_features" class="container-fluid">';
 			$view .= '<div class="row">';
 				$view .= '<div class="col-12">';
 					$view .= '<ul>';
@@ -357,7 +357,7 @@ final class ProductView {
 		$specList = new ProductSpecificationList($productID);
 		$specs = $specList->specifications();
 
-			$view = '<div id="hardware_product_specification" class="container-fluid">';
+			$view = '<div id="product_specification" class="container-fluid">';
 			foreach ($specs AS $productSpecificationID) {
 				$spec = new ProductSpecification($productSpecificationID);
 				$view .= '<div class="row">';
@@ -374,8 +374,8 @@ final class ProductView {
 	private function productViewDownloads($productID) {
 
 		$downloads = File::getObjectFileArray('Product', $productID);
-		$view = '<div id="hardware_product_downloads" class="container-fluid">';
-			$view .= '<div id="hardware_product_downloads_container" class="row">';
+		$view = '<div id="product_downloads" class="container-fluid">';
+			$view .= '<div id="product_downloads_container" class="row">';
 				foreach ($downloads AS $fileID) {
 					$file = new File($fileID);
 					$view .= '
@@ -415,8 +415,8 @@ final class ProductView {
 					<td class="text-center">' . ($product->productPublished?'&#10004;':'') . '</td>
 					<td class="text-center">' . ($product->productFeatured?'&#10004;':'') . '</td>
 					<td class="text-center text-nowrap">
-						<a href="/' . Lang::prefix() . 'hardware/admin/products/update/' . $productID . '/" class="btn btn-sm btn-outline-primary">' . Lang::getLang('update') . '</a>
-						<a href="/' . Lang::prefix() . 'hardware/admin/products/confirm-delete/' . $productID . '/" class="btn btn-sm btn-outline-danger">' . Lang::getLang('delete') . '</a>
+						<a href="/' . Lang::prefix() . 'product/admin/product/update/' . $productID . '/" class="btn btn-sm btn-outline-primary">' . Lang::getLang('update') . '</a>
+						<a href="/' . Lang::prefix() . 'product/admin/product/confirm-delete/' . $productID . '/" class="btn btn-sm btn-outline-danger">' . Lang::getLang('delete') . '</a>
 					</td>
 				</tr>
 			';
@@ -433,7 +433,7 @@ final class ProductView {
 		$updateOnly = true;
 
 		if ($type == 'update' && ctype_digit($productID)) {
-			$productFormURL = '/' . Lang::prefix() . 'hardware/admin/products/update/' . $productID . '/';
+			$productFormURL = '/' . Lang::prefix() . 'product/admin/product/update/' . $productID . '/';
 			$updateOnly = false;
 		}
 
@@ -441,19 +441,19 @@ final class ProductView {
 
 			<ul id="admin_product_form_nav_tabs" class="nav nav-tabs">
 				<li class="nav-item">
-					<a class="nav-link' . ($activeTab=='product-form'?' active':'') . '" href="' . $productFormURL . '">' . Lang::getLang('hardwareProduct') . '</a>
+					<a class="nav-link' . ($activeTab=='product-form'?' active':'') . '" href="' . $productFormURL . '">' . Lang::getLang('product') . '</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link' . ($updateOnly?' disabled':'') . ($activeTab=='features'?' active':'') . '" href="' . $productFormURL . 'features/"' . ($updateOnly?' tabindex="-1"':'') . '>' . Lang::getLang('hardwareProductFeatures') . '</a>
+					<a class="nav-link' . ($updateOnly?' disabled':'') . ($activeTab=='features'?' active':'') . '" href="' . $productFormURL . 'features/"' . ($updateOnly?' tabindex="-1"':'') . '>' . Lang::getLang('productFeatures') . '</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link' . ($updateOnly?' disabled':'') . ($activeTab=='specifications'?' active':'') . '" href="' . $productFormURL . 'specifications/"' . ($updateOnly?' tabindex="-1"':'') . '>' . Lang::getLang('hardwareProductSpecifications') . '</a>
+					<a class="nav-link' . ($updateOnly?' disabled':'') . ($activeTab=='specifications'?' active':'') . '" href="' . $productFormURL . 'specifications/"' . ($updateOnly?' tabindex="-1"':'') . '>' . Lang::getLang('productSpecifications') . '</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link' . ($updateOnly?' disabled':'') . ($activeTab=='images'?' active':'') . '" href="' . $productFormURL . 'images/"' . ($updateOnly?' tabindex="-1"':'') . '>' . Lang::getLang('hardwareProductImages') . '</a>
+					<a class="nav-link' . ($updateOnly?' disabled':'') . ($activeTab=='images'?' active':'') . '" href="' . $productFormURL . 'images/"' . ($updateOnly?' tabindex="-1"':'') . '>' . Lang::getLang('productImages') . '</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link' . ($updateOnly?' disabled':'') . ($activeTab=='files'?' active':'') . '" href="' . $productFormURL . 'files/"' . ($updateOnly?' tabindex="-1"':'') . '>' . Lang::getLang('hardwareProductFiles') . '</a>
+					<a class="nav-link' . ($updateOnly?' disabled':'') . ($activeTab=='files'?' active':'') . '" href="' . $productFormURL . 'files/"' . ($updateOnly?' tabindex="-1"':'') . '>' . Lang::getLang('productFiles') . '</a>
 				</li>
 			</ul>
 			
@@ -481,13 +481,13 @@ final class ProductView {
 		}
 
 		$carousel = '
-			<div id="hardware_product_carousel" class="carousel slide" data-ride="carousel">
+			<div id="product_carousel" class="carousel slide" data-ride="carousel">
 				<div class="carousel-inner">' . $panels . '</div>
-				<a class="carousel-control-prev" href="#hardware_product_carousel" role="button" data-slide="prev">
+				<a class="carousel-control-prev" href="#product_carousel" role="button" data-slide="prev">
 					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 					<span class="sr-only">Previous</span>
 				</a>
-				<a class="carousel-control-next" href="#hardware_product_carousel" role="button" data-slide="next">
+				<a class="carousel-control-next" href="#product_carousel" role="button" data-slide="next">
 					<span class="carousel-control-next-icon" aria-hidden="true"></span>
 					<span class="sr-only">Next</span>
 				</a>

@@ -24,7 +24,7 @@ final class ProductCategoryView {
 
 			<div class="row">
 				<div class="col-12 col-sm-6 offset-sm-6 col-md-3 offset-md-9 col-lg-2 offset-lg-10">
-					<a href="/' . Lang::prefix() . 'hardware/admin/product-categories/create/" class="btn btn-block btn-outline-success">' . Lang::getLang('create') . '</a>
+					<a href="/' . Lang::prefix() . 'product/admin/category/create/" class="btn btn-block btn-outline-success">' . Lang::getLang('create') . '</a>
 				</div>
 			</div>
 
@@ -34,8 +34,8 @@ final class ProductCategoryView {
 					<table class="table table-bordered table-striped table-hover table-sm">
 						<thead class="thead-light">
 							<tr>
-								<th scope="col" class="text-center">' . Lang::getLang('hardwareProductCategoryID') . '</th>
-								<th scope="col" class="text-center">' . Lang::getLang('hardwareProductCategoryName') . '</th>
+								<th scope="col" class="text-center">' . Lang::getLang('productCategoryID') . '</th>
+								<th scope="col" class="text-center">' . Lang::getLang('productCategoryName') . '</th>
 								<th scope="col" class="text-center">' . Lang::getLang('action') . '</th>
 							</tr>
 						</thead>
@@ -46,7 +46,7 @@ final class ProductCategoryView {
 
 	';
 
-		$card = new CardView('hardware_product_category_list',array('container'),'',array('col-12'),Lang::getLang('hardwareProductCategoryList'),$body);
+		$card = new CardView('product_category_list',array('container'),'',array('col-12'),Lang::getLang('productCategoryList'),$body);
 		return $card->card();
 
 	}
@@ -60,7 +60,7 @@ final class ProductCategoryView {
 
 		$form = '
 
-			<form id="product_category_form_' . $type . '" method="post" action="/' . Lang::prefix() . 'hardware/admin/product-categories/' . $type . '/' . ($productCategoryID?$productCategoryID.'/':'') . '">
+			<form id="product_category_form_' . $type . '" method="post" action="/' . Lang::prefix() . 'product/admin/category/' . $type . '/' . ($productCategoryID?$productCategoryID.'/':'') . '">
 				
 				' . ($productCategoryID?'<input type="hidden" name="productCategoryID" value="' . $productCategoryID . '">':'') . '
 
@@ -107,7 +107,7 @@ final class ProductCategoryView {
 				<div class="form-row">
 				
 					<div class="form-group col-12 col-sm-4 col-md-3">
-						<a href="/' . Lang::prefix() . 'hardware/admin/product-categories/" class="btn btn-block btn-outline-secondary" role="button">' . Lang::getLang('returnToList') . '</a>
+						<a href="/' . Lang::prefix() . 'product/admin/category/" class="btn btn-block btn-outline-secondary" role="button">' . Lang::getLang('returnToList') . '</a>
 					</div>
 					
 					<div class="form-group col-12 col-sm-4 col-md-3 offset-md-3">
@@ -115,7 +115,7 @@ final class ProductCategoryView {
 					</div>
 					
 					<div class="form-group col-12 col-sm-4 col-md-3">
-						<a href="/' . Lang::prefix() . 'hardware/admin/product-categories/" class="btn btn-block btn-outline-secondary" role="button">' . Lang::getLang('cancel') . '</a>
+						<a href="/' . Lang::prefix() . 'product/admin/category/" class="btn btn-block btn-outline-secondary" role="button">' . Lang::getLang('cancel') . '</a>
 					</div>
 					
 				</div>
@@ -124,8 +124,8 @@ final class ProductCategoryView {
 
 		';
 
-		$header = Lang::getLang('hardwareProductCategory'.ucfirst($type)).($type=='update'?' ['.$category->productCategoryName().']':'');
-		$card = new CardView('hardware_product_category_confirm_'.$type,array('container'),'',array('col-12'),$header,$form);
+		$header = Lang::getLang('productCategory'.ucfirst($type)).($type=='update'?' ['.$category->productCategoryName().']':'');
+		$card = new CardView('product_category_confirm_'.$type,array('container'),'',array('col-12'),$header,$form);
 		return $card->card();
 
 	}
@@ -136,7 +136,7 @@ final class ProductCategoryView {
 
 		$form = '
 
-			<form id="product_form_delete" method="post" action="/' . Lang::prefix() . 'hardware/admin/product-categories/delete/' . $productCategoryID . '/">
+			<form id="product_form_delete" method="post" action="/' . Lang::prefix() . 'product/admin/category/delete/' . $productCategoryID . '/">
 				
 				<input type="hidden" name="productCategoryID" value="' . $productCategoryID . '">
 
@@ -187,7 +187,7 @@ final class ProductCategoryView {
 					</div>
 					
 					<div class="form-group col-6 col-md-3">
-						<a href="/' . Lang::prefix() . 'hardware/admin/product-categories/" class="btn btn-block btn-outline-secondary" role="button">' . Lang::getLang('cancel') . '</a>
+						<a href="/' . Lang::prefix() . 'product/admin/category/" class="btn btn-block btn-outline-secondary" role="button">' . Lang::getLang('cancel') . '</a>
 					</div>
 					
 				</div>
@@ -196,7 +196,7 @@ final class ProductCategoryView {
 		';
 
 		$header = Lang::getLang('productCategoryConfirmDelete').' ['. $category->productCategoryName() .']';
-		$card = new CardView('hardware_product_category_confirm_delete',array('container'),'',array('col-12'),$header,$form);
+		$card = new CardView('product_category_confirm_delete',array('container'),'',array('col-12'),$header,$form);
 		return $card->card();
 
 	}
@@ -217,8 +217,8 @@ final class ProductCategoryView {
 					<th scope="row" class="text-center">' . $productCategoryID . '</th>
 					<td class="text-left">' . $category->productCategoryName() . '</td>
 					<td class="text-center text-nowrap">
-						<a href="/' . Lang::prefix() . 'hardware/admin/product-categories/update/' . $productCategoryID . '/" class="btn btn-sm btn-outline-primary">' . Lang::getLang('update') . '</a>
-						<a href="/' . Lang::prefix() . 'hardware/admin/product-categories/confirm-delete/' . $productCategoryID . '/" class="btn btn-sm btn-outline-danger">' . Lang::getLang('delete') . '</a>
+						<a href="/' . Lang::prefix() . 'product/admin/category/update/' . $productCategoryID . '/" class="btn btn-sm btn-outline-primary">' . Lang::getLang('update') . '</a>
+						<a href="/' . Lang::prefix() . 'product/admin/category/confirm-delete/' . $productCategoryID . '/" class="btn btn-sm btn-outline-danger">' . Lang::getLang('delete') . '</a>
 					</td>
 				</tr>
 			';

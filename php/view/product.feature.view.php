@@ -46,7 +46,7 @@ final class ProductFeatureView {
 
 		$form .= '
 
-			<form id="hardware_product_feature_manager_form" method="post" action="/' . Lang::prefix() . 'hardware/admin/products/update/' . $productID . '/features/">
+			<form id="product_feature_manager_form" method="post" action="/' . Lang::prefix() . 'product/admin/product/update/' . $productID . '/features/">
 
 				<div class="form-row">
 				
@@ -78,8 +78,8 @@ final class ProductFeatureView {
 
 		';
 
-		$header = Lang::getLang('hardwareProductFeatureManager') . ' ['.$product->productName().']';
-		$card = new CardView('hardware_product_feature_manager',array('container'),'',array('col-12'),$header,$form);
+		$header = Lang::getLang('productFeatureManager') . ' ['.$product->productName().']';
+		$card = new CardView('product_feature_manager',array('container'),'',array('col-12'),$header,$form);
 		return $card->card();
 
 	}
