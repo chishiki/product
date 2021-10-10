@@ -36,8 +36,7 @@ final class ProductAdminController implements StateControllerInterface {
 				// /product/admin/product/create/
 				if ($loc[3] == 'create' && isset($input['product-create'])) {
 
-					// $this->errors (add validation here: ok to create?)
-					// $this->errors[] = array('product-create' => Lang::getLang('thereWasAProblemCreatingYourProduct'));
+					$this->validateProductURL($input['productURL'], 'create');
 
 					if (empty($this->errors)) {
 
@@ -60,8 +59,7 @@ final class ProductAdminController implements StateControllerInterface {
 
 					$productID = $loc[4];
 
-					// $this->errors (add validation here: ok to update?)
-					// $this->errors[] = array('product-update' => Lang::getLang('thereWasAProblemUpdatingYourProduct'));
+					$this->validateProductURL($input['productURL'], 'update', $productID);
 
 					if (empty($this->errors)) {
 
@@ -235,6 +233,28 @@ final class ProductAdminController implements StateControllerInterface {
 
 			}
 
+		}
+
+	}
+
+	private function validateProductURL($productURL, $type, $productID = null) {
+
+		if (empty($productURL)) {
+			$this->errors[] = array('productURL' => Lang::getLang('productUrlMustBeSet'));
+		} else {
+			if (ProductUtilities::productUrlExists($productURL)) {
+				if ($type == 'update' && is_numeric($productID)) {
+					$product = new Product($productID);
+					if ($product->productURL != $productURL) {
+						$this->errors[] = array('productURL' => Lang::getLang('newsUrlAlreadyUsedByAnotherNewsItem'));
+					}
+				} else {
+					$this->errors[] = array('productURL' => Lang::getLang('productUrlAlreadyExists'));
+				}
+			}
+			if (!preg_match('/^[A-Za-z0-9-]+$/D', $productURL)) {
+				$this->errors[] = array('productURL' => Lang::getLang('onlyAlphanumericAndHyphenInputAreAllowedInTheUrlField'));
+			}
 		}
 
 	}
