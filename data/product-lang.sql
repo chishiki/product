@@ -42,4 +42,21 @@ REPLACE INTO `perihelion_Lang` VALUES ('product','Product',0,'プロダクト',0
 ('productUpdateSuccessful','Product was updated successfully.',0,'製品は更新済みです。',0,@now),
 ('productUsesSerialNumber','Uses Serial Numbers',0,'シリアル番号使用',0,@now),
 ('productUsesSerialNumberShort','Serial',0,'シリアル',0,@now),
-('productWasNotAddedToSalesOrder','Product was not added to Sales Order.',0,'製品は受注に追加されませんでした。',0,@now);
+('productWasNotAddedToSalesOrder','Product was not added to Sales Order.',0,'製品は受注に追加されませんでした。',0,@now),
+('productFeatures','Features',0,'特徴',0,@now),
+('productSpecifications','Specifications',0,'仕様',0,@now),
+('productImages','Images',0,'イメージ',0,@now),
+('productFiles','Files',0,'ファイル',0,@now),
+('productfeatureNameEnglish','Feature (English)',0,'特徴名(英語)',0,@now),
+('productfeatureNameJapanese','Feature (Japanese)',0,'特徴名(日本語)',0,@now),
+('productSpecificationNameEnglish','Specification (English)',0,'仕様名(英語)',0,@now),
+('productSpecificationDescriptionEnglish','Details (English)',0,'仕様詳細(英語)',0,@now),
+('productSpecificationNameJapanese','Specification (Japanese)',0,'仕様名(日本語)',0,@now),
+('productSpecificationDescriptionJapanese','Details (Japanese)',0,'仕様詳細(日本語)',0,@now),
+('productNameEnglish','Product (English)',0,'製品名(英語)',0,@now),
+('productNameJapanese','Product (Japanese)',0,'製品名(日本語)',0,@now),
+('productFeatureManager','Feature Manager',0,'特徴管理',0,@now),
+('productSpecificationManager','Specification Manager',0,'仕様管理',0,@now),
+('addNewFeatureHere','Add new feature here.',0,'新規特徴をここに入力して下さい。',0,@now);
+
+-- ('xxxxxxx','xxxxxxx',0,'xxxxxxx',0,@now),
