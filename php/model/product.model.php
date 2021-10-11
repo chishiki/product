@@ -3,22 +3,27 @@
 /*
 
 CREATE TABLE `product_Product` (
-  `productID` int(12) NOT NULL AUTO_INCREMENT,
-  `productCategoryID` int(12) NOT NULL,
-  `siteID` int(12) NOT NULL,
-  `creator` int(12) NOT NULL,
+  `productID` int NOT NULL AUTO_INCREMENT,
+  `productCategoryID` int NOT NULL,
+  `siteID` int NOT NULL,
+  `creator` int NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
-  `deleted` int(1) NOT NULL,
+  `deleted` int NOT NULL,
   `productNameEnglish` varchar(255) NOT NULL,
   `productDescriptionEnglish` text NOT NULL,
   `productNameJapanese` varchar(255) NOT NULL,
   `productDescriptionJapanese` text NOT NULL,
-  `productPublished` int(1) NOT NULL,
-  `productFeatured` int(1) NOT NULL,
+  `productUnitPrice1` decimal(13,4) NOT NULL,
+  `productUnitPrice2` decimal(13,4) NOT NULL,
+  `productUnitPrice3` decimal(13,4) NOT NULL,
+  `productUnitPrice4` decimal(13,4) NOT NULL,
+  `productNotes` text NOT NULL,
+  `productPublished` int NOT NULL,
   `productURL` varchar(100) NOT NULL,
+  `productFeatured` int NOT NULL,
   PRIMARY KEY (`productID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 */
 
@@ -35,9 +40,14 @@ final class Product extends ORM {
 	public $productDescriptionEnglish;
 	public $productNameJapanese;
 	public $productDescriptionJapanese;
+	public $productUnitPrice1;
+	public $productUnitPrice2;
+	public $productUnitPrice3;
+	public $productUnitPrice4;
+	public $productNotes;
 	public $productPublished;
-	public $productFeatured;
 	public $productURL;
+	public $productFeatured;
 
 	public function __construct($productID = null) {
 
@@ -54,9 +64,15 @@ final class Product extends ORM {
 		$this->productDescriptionEnglish = '';
 		$this->productNameJapanese = '';
 		$this->productDescriptionJapanese = '';
+		$this->productUnitPrice1 = '';
+		$this->productUnitPrice2 = '';
+		$this->productUnitPrice3 = '';
+		$this->productUnitPrice4 = '';
+		$this->productNotes = '';
 		$this->productPublished = 1;
-		$this->productFeatured = 0;
 		$this->productURL = '';
+		$this->productFeatured = 0;
+
 
 		if ($productID) {
 
