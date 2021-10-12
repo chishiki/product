@@ -536,6 +536,70 @@ final class ProductView {
 
 	}
 
+	public function productListAutocomplete(ProductModalParameters $pmp) {
+
+	    $productName = '';
+	    if ($pmp->productID) { $p = new Product($pmp->productID); $productName = $p->productName(); }
+
+	    $pac = '<input id="' . $pmp->modalKey . '_hidden_input_id" class="product-id-input" type="hidden" name="' . $pmp->fieldName . '" value="' . $pmp->productID . '">';
+
+	    $pac .= '
+
+			<div class="input-group">
+				<input id="' . $pmp->modalKey . '_text_input_id" type="text" class="product-list-autocomplete form-control' . ($pmp->size?' form-control-'.$pmp->size:'') . '" value="' . $productName . '" placeholder="' . Lang::getLang($pmp->placeholder) . '"' . ($pmp->required?' required':'') . '>
+				<div class="input-group-append">
+					<button id="' . $pmp->modalKey. '_btn_id" class="btn-modal-trigger btn btn-outline-secondary' . ($pmp->size?' btn-'.$pmp->size:'') . '" type="button" tabindex="-1" data-toggle="modal" data-target="#productReferenceModal">' . Lang::getLang($pmp->productModalButtonAnchor) . '</button>
+				</div>
+			</div>
+
+	    ';
+
+	    if ($pmp->includeModal) { $pac .= $this->productReferenceModal(); }
+
+	    return $pac;
+
+	}
+
+	public function productReferenceModal() {
+
+		$arg = new ProductListParameters();
+		$pl = new ProductList($arg);
+		$products = $pl->products();
+
+		$items = '';
+		foreach ($products AS $productID) {
+			$p = new Product($productID);
+			$items .= '<a class="list-group-item" data-productid="' . $productID . '">' . $p->productName() . '</a>';
+		}
+
+		$modal = '
+
+			<div class="modal fade" id="productReferenceModal" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-scrollable" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Product Reference</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<ul class="list-group product-modal-list-group">' . $items . '</ul>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		';
+
+		return $modal;
+
+	}
+
+
 }
 
 ?>

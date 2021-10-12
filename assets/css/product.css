@@ -2,6 +2,19 @@
 /* general css goes here */
 /* this css is loaded AFTER perihelion and bootstrap css */
 
+.product-modal-list-group a.list-group-item {
+    text-decoration: none;
+    cursor: default;
+}
+
+.product-modal-list-group a.list-group-item:nth-child(odd) {
+    background-color: #eeeeee;
+}
+
+.product-modal-list-group a.list-group-item:hover {
+    background-color: #dddddd;
+}
+
 #product_carousel .carousel-item {
     position:relative;
     height:400px;

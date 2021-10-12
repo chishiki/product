@@ -13,7 +13,10 @@ var productScript = function() {
 		langPrefix = '/ja';
 	}
 
-
+	var btnModalTrigger = '';
+	$(document).on('click', 'button.btn-modal-trigger', function() {
+		btnModalTrigger = $(this).attr('id');
+	});
 
 	/* START ADMIN PRODUCT FEATURE MANAGER */
 
