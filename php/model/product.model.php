@@ -274,4 +274,30 @@ final class ProductUtilities {
 
 }
 
+final class ProductModalParameters {
+
+	public $productID;
+	public $size;
+	public $fieldName;
+	public $includeModal;
+	public $placeholder;
+	public $required;
+	public $productModalButtonAnchor;
+	public $modalKey;
+
+	public function __construct() {
+
+		$this->productID = null;
+		$this->size = null;
+		$this->fieldName = 'productID';
+		$this->includeModal = true;
+		$this->placeholder = 'product';
+		$this->required = false;
+		$this->productModalButtonAnchor = 'productModalButtonAnchor';
+		$this->modalKey = 'product_modal';
+
+	}
+
+}
+
 ?>
