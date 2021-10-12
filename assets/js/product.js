@@ -144,8 +144,6 @@ var productScript = function() {
 		$('#'+btnModalTrigger).parent().parent().prev('input').val(productID);
 		$('#'+btnModalTrigger).parent().prev('input').val(productName);
 
-		if (orderObject == 'sales-orders') { setUpSalesOrderRow(element, productID); }
-
 		$('#productReferenceModal').modal('hide');
 
 	});
